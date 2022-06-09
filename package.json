@@ -9,9 +9,12 @@
   },
   "files": [
     "bin",
-    "LICENSE",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fuweichin/npm-link-self"
+  },
   "scripts": {
     "test": "jasmine",
     "link-self": "node bin/index.js"
