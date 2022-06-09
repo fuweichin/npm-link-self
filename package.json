@@ -1,0 +1,21 @@
+{
+  "name": "npm-link-self",
+  "version": "0.1.0",
+  "description": "link self to ./node_modules/ so you may require/import self in scripts or tests, useful for package developers",
+  "main": "bin/index.js",
+  "type": "commonjs",
+  "bin": {
+    "npm-link-self": "bin/index.js"
+  },
+  "files": [
+    "bin",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "jasmine",
+    "link-self": "node bin/index.js"
+  },
+  "author": "Fuwei Chin",
+  "license": "ISC"
+}
