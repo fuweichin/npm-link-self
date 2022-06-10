@@ -6,7 +6,7 @@ const util = require('util');
 const execAsync = util.promisify(child_process.exec);
 
 function getManifest() {
-  return execAsync('npm pack --dry-run --json ./').then(({stdout, stderr}) => {
+  return execAsync('npm pack --dry-run --json').then(({stdout, stderr}) => {
     if (stderr) {
       process.stderr.write(stderr);
     }

@@ -31,24 +31,14 @@ function passExecOutput(proc) {
   return proc;
 }
 function installSelf() {
-  let projDir = process.cwd();
   let cacheDir = path.join('node_modules', '.cache');
   let tgzFile = path.join(cacheDir, getPackedFilename());
   return fsPromises.mkdir(cacheDir, { // mkdir -p node_modules/.cache
     recursive: true
   }).then(() => {
-    process.chdir(cacheDir); // pushd node_modules/.cache
-    return execAsync('npm pack ../../').then(passExecOutput);
+    return execAsync('npm pack --pack-destination "' + cacheDir + '"').then(passExecOutput);
   }).then(() => {
-    process.chdir(projDir); // popd
     return execAsync('npm install --no-save --only=prod --no-optional ' + tgzFile).then(passExecOutput);
-  }, (err) => {
-    if (process.cwd() !== projDir) {
-      process.chdir(projDir);
-    }
-    throw err;
-  }).then(() => {
-    // return fsPromises.rm(tgzFile, {force: true}); // rm -f ${tgzFile}
   });
 }
 function walkFilesSync(context, filter, next) {

@@ -58,11 +58,11 @@ npm-link-self --install
 **link mode** (default)
 
 1. run `npm pack --dry-run --json ./` to get a list of to-be-packed files
-2. for each file in the list, create directories and symlinks under `node_modules/<self-package-name>`
+2. for each file in the list, create directories / create symlinks under `node_modules/<self-package-name>`
 
 **install mode** (with CLI arg `--install`)
 
-1. run `mkdir -p node_modules/.cache && pushd node_modules/.cache && npm pack ../../ && popd`
+1. run `mkdir -p node_modules/.cache && npm pack --pack-destination node_modules/.cache`
 2. run `npm install --no-save --only=prod --no-optional node_modules/.cache/<pkg-tgz>` to install self
 3. for each file under `node_modules/<self-package-name>`, replace the files with symlinks
 
